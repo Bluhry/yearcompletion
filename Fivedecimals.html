@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Year Completion Percentage</title>
+  </head>
+  <body>
+    <h1>Year Completion Percentage</h1>
+    <p>The current year is:</p>
+    <p id="year"></p>
+    <p>The percentage completion of the year is:</p>
+    <p id="percentage"></p>
+    <script>
+      // Function to calculate the percentage completion of the year to the 10 thousandth out of 100%
+      function calculateYearPercentage() {
+        // Get the current year
+        const currentYear = new Date().getFullYear();
+
+        // Get the current date and time
+        const currentDateTime = new Date();
+
+        // Get the number of milliseconds in the current year
+        const millisecondsInYear = new Date(currentYear + 1, 0, 1) - new Date(currentYear, 0, 1);
+
+        // Calculate the number of milliseconds elapsed in the current year
+        const millisecondsElapsed = currentDateTime - new Date(currentYear, 0, 1);
+
+        // Calculate the percentage completion to the 10 thousandth out of 100%
+        const percentage = ((millisecondsElapsed / millisecondsInYear) * 100).toFixed(5);
+
+        // Display the results
+        document.getElementById("year").innerHTML = currentYear;
+        document.getElementById("percentage").innerHTML = percentage + "%";
+      }
+
+      // Call the function once on page load to display the initial results
+      calculateYearPercentage();
+
+      // Call the function every second to update the results
+      setInterval(calculateYearPercentage, 1000);
+    </script>
+  </body>
+</html>
